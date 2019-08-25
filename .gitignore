@@ -21,6 +21,7 @@
 #.vscode/
 to_do_list.code-workspace
 to_do_list.iml
+nohup.out
 
 # Flutter/Dart/Pub related
 **/doc/api/

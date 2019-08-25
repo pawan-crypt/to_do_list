@@ -1,0 +1,14 @@
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.abm [bit 5]
+emulator: WARNING: Not all modern X86 virtualization features supported, which introduces problems with slowdown when running Android on multicore vCPUs. Setting AVD to run with 1 vCPU core only.
+emulator: INFO: boot completed
+emulator: INFO: boot time 45341 ms
+emulator: Increasing screen off timeout, logcat buffer size to 2M.
+emulator: Revoking microphone permissions for Google App.
+deleteSnapshot: for default_boot
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.abm [bit 5]
+emulator: WARNING: Not all modern X86 virtualization features supported, which introduces problems with slowdown when running Android on multicore vCPUs. Setting AVD to run with 1 vCPU core only.
+emulator: INFO: boot completed
+emulator: INFO: boot time 39984 ms
+emulator: Increasing screen off timeout, logcat buffer size to 2M.
+emulator: Revoking microphone permissions for Google App.
+emulator: Saving state on exit with session uptime 1098230 ms

@@ -55,17 +55,13 @@ class TaskList extends StatefulWidget{
 class TaskListState extends State<TaskList>{
 
   final addTaskController = TextEditingController();
-  final Set<String> _tasks = Set<String>();
+  final List<String> _tasks = [];
+  
 
   @override 
   void dispose(){
     addTaskController.dispose();
     super.dispose();
-  }
-
-  addTask(){
-    _tasks.add(addTaskController.text);
-    print(_tasks);
   }
 
   resetTask(){
@@ -75,53 +71,70 @@ class TaskListState extends State<TaskList>{
 
   @override 
   Widget build(BuildContext buildContext){
-    return ListView(
+    return Column(
       children: <Widget>[
         Container(
-    padding: EdgeInsets.all(32),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
+          padding: EdgeInsets.all(32),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    labelText: "Enter Task",
+                  ),
+                  onChanged: (text) => {
+                    print(text)
+                  },
+                  controller: addTaskController,
+                )
+              ),
+              Container(
+                padding: EdgeInsets.all(8),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.add_circle,
+                    color: Colors.green,
+                  ),
+                  onPressed: (){
+                    setState((){
+                    print(addTaskController.text);
+                    _tasks.add(addTaskController.text);
+                    print(_tasks);
+                    addTaskController.clear();
+                    });
+                  },
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.clear,
+                  color: Colors.red,
+                ),
+                onPressed: resetTask,
+              ),
+            ],
+          ),
+        ),
         Expanded(
-          child: TextField(
-            autofocus: true,
-            decoration: InputDecoration(
-              labelText: "Enter Task",
-            ),
-            onChanged: (text) => {
-              print(text)
-            },
-            controller: addTaskController,
-          )
-        ),
-        Container(
-          padding: EdgeInsets.all(8),
-          child: IconButton(
-            icon: Icon(
-              Icons.add_circle,
-              color: Colors.green,
-            ),
-            onPressed: (){
-              print(addTaskController.text);
-              _tasks.add(addTaskController.text);
-              print(_tasks);
-              addTaskController.clear();
+          child: ListView.builder(
+            padding: EdgeInsets.all(32),
+            itemCount: _tasks.length,
+            itemBuilder: (context, index){
+              if(_tasks.length <= 0){
+                return ListTile(
+                  title: Text("No Task To Do !!!"),
+                );
+              }
+              return ListTile(
+                title: Text(_tasks[index]),
+                trailing: Icon(Icons.check)
+              );
             },
           ),
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.clear,
-            color: Colors.red,
-          ),
-          onPressed: resetTask,
-        ),
-      ],
-    ),
-  ),
+        )
       ],
     );
   }
 }
-
-

@@ -30,16 +30,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("To Do List"),
-        actions: <Widget>[
-          Icon(
-            Icons.done,
-            color: Colors.green,
-          ),
-          Icon(
-            Icons.stop,
-            color: Colors.red,
-          )
-        ],
         ),
         body: TaskList(),
     );
@@ -109,7 +99,7 @@ class TaskListState extends State<TaskList>{
               ),
               IconButton(
                 icon: Icon(
-                  Icons.clear,
+                  Icons.remove_circle,
                   color: Colors.red,
                 ),
                 onPressed: resetTask,
@@ -129,7 +119,15 @@ class TaskListState extends State<TaskList>{
               }
               return ListTile(
                 title: Text(_tasks[index]),
-                trailing: Icon(Icons.check)
+                trailing: IconButton(
+                  icon: Icon(Icons.check_circle),
+                  onPressed: (){
+                    setState(() {
+                      _tasks.removeAt(index);
+                      print('Task COmpleted!! Yay!');
+                    });
+                  },
+                ),
               );
             },
           ),
